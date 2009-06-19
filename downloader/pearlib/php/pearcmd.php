@@ -1,24 +1,20 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// | PHP Version 5                                                        |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2004 The PHP Group                                |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 3.0 of the PHP license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.php.net/license/3_0.txt.                                  |
-// | If you did not receive a copy of the PHP license and are unable to   |
-// | obtain it through the world-wide-web, please send a note to          |
-// | license@php.net so we can mail you a copy immediately.               |
-// +----------------------------------------------------------------------+
-// | Authors: Stig Bakken <ssb@php.net>                                   |
-// |          Tomas V.V.Cox <cox@idecnet.com>                             |
-// |                                                                      |
-// +----------------------------------------------------------------------+
-//
-// $Id: pearcmd.php,v 1.38 2007/11/17 21:02:21 dufuz Exp $
+/**
+ * PEAR, the PHP Extension and Application Repository
+ *
+ * Command line interface
+ *
+ * PHP versions 4 and 5
+ *
+ * @category   pear
+ * @package    PEAR
+ * @author     Stig Bakken <ssb@php.net>
+ * @author     Tomas V.V.Cox <cox@idecnet.com>
+ * @copyright  1997-2009 The Authors
+ * @license    http://opensource.org/licenses/bsd-license.php New BSD License
+ * @version    CVS: $Id: pearcmd.php,v 1.41 2009/03/04 20:05:56 dufuz Exp $
+ * @link       http://pear.php.net/package/PEAR
+ */
 
 ob_end_clean();
 if (!defined('PEAR_RUNTYPE')) {
@@ -29,8 +25,8 @@ define('PEAR_IGNORE_BACKTRACE', 1);
 /**
  * @nodep Gtk
  */
-if ('/home/moshe/dev/magento/downloader/pearlib/php' != '@'.'include_path'.'@') {
-    ini_set('include_path', '/home/moshe/dev/magento/downloader/pearlib/php');
+if ('/home/ceefour/project/abispulsa/web/downloader/pearlib/php' != '@'.'include_path'.'@') {
+    ini_set('include_path', '/home/ceefour/project/abispulsa/web/downloader/pearlib/php');
     $raw = false;
 } else {
     // this is a raw, uninstalled pear, either a cvs checkout, or php distro
@@ -47,7 +43,7 @@ ob_implicit_flush(true);
 $_PEAR_PHPDIR = '#$%^&*';
 set_error_handler('error_handler');
 
-$pear_package_version = "1.7.1";
+$pear_package_version = "1.8.1";
 
 require_once 'PEAR.php';
 require_once 'PEAR/Frontend.php';
@@ -299,7 +295,7 @@ if ($fetype == 'Gtk' || $fetype == 'Gtk2') {
         if (strlen($opt) == 1) {
             $cmdoptions = $cmd->getOptions($command);
             foreach ($cmdoptions as $o => $d) {
-                if (@$d['shortopt'] == $opt) {
+                if (isset($d['shortopt']) && $d['shortopt'] == $opt) {
                     $opts[$o] = $value;
                 }
             }
@@ -400,9 +396,13 @@ function cmdHelp($command)
 // }}}
 
 function error_handler($errno, $errmsg, $file, $line, $vars) {
-    if ((defined('E_STRICT') && $errno & E_STRICT) || !error_reporting()) {
+    if ((defined('E_STRICT') && $errno & E_STRICT) || (defined('E_DEPRECATED') &&
+          $errno & E_DEPRECATED) || !error_reporting()) {
         if (defined('E_STRICT') && $errno & E_STRICT) {
             return; // E_STRICT
+        }
+        if (defined('E_DEPRECATED') && $errno & E_DEPRECATED) {
+            return; // E_DEPRECATED
         }
         if ($GLOBALS['config']->get('verbose') < 4) {
             return false; // @silenced error, show all if debug is high enough
@@ -442,5 +442,3 @@ function error_handler($errno, $errmsg, $file, $line, $vars) {
  * End:
  */
 // vim600:syn=php
-
-?>
