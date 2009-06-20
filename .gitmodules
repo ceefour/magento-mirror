@@ -1,0 +1,3 @@
+[submodule "app/locale/id_ID"]
+	path = app/locale/id_ID
+	url = git@github.com:ceefour/magento-id.git
