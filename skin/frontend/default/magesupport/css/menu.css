@@ -1,0 +1,99 @@
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+#nav {
+	font-size:13px;
+	clear: both;
+	background-color: #868B8E;
+	height: 30px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	text-decoration: none;
+	padding-left:15px;
+}
+
+/************** ALL LEVELS  *************/ /* Style consistent throughout all nav levels */
+#nav li { position:relative;text-transform:uppercase; text-align:left;	}
+#nav li.over { z-index:999; }
+#nav a { display:block; line-height:1.3em; text-decoration:none; }
+#nav a:hover { display:block; line-height:1.3em; text-decoration:none; background-color:#ECECEC; }
+#nav span { display:block; cursor:pointer; white-space:nowrap; }
+#nav li ul span {white-space:normal; }
+
+/************ 0 LEVEL  ***************/
+#nav li {
+	display: inline;
+}
+
+#nav li { float:left; margin:1px 8px 11px 1px; padding:3px 8px; }
+#nav li.active a { color:#444; }
+#nav a { 	float:left;
+	padding-right:1px;
+	color:#fff;
+	font-size: 11px;
+	text-decoration: none;
+	display: block;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 1px; }
+		
+#nav li.over a,
+#nav a:hover { color:#444;  }
+#nav li.over,
+#nav li.active { margin:1px 8px 11px 1px; padding:3px 8px; /*border:1px solid #bbb;*/ background:#ececec; background:none;}
+#nav li:hover { background:#ECECEC;}
+
+/************ 1ST LEVEL ************/
+#nav ul li,
+#nav ul li.active,
+#nav ul li.over {
+	float:none;
+	border:none;
+	background:none;
+	margin:0;
+	padding:0;
+	padding-bottom:1px;
+	text-transform:none;
+	display: block;
+	
+}
+#nav ul li.parent { background:url(../images/nav_parent_arrow.gif) no-repeat 100% 50%; }
+#nav ul li.last { padding-bottom:0; }
+#nav ul li.active { margin:0; border:0; background:none; }
+#nav ul a,
+#nav ul a:hover { float:none; padding:0; background:none;padding:3px 0;  }
+#nav ul li a { font-weight:normal !important; }
+
+/************ 2ND LEVEL ************/
+#nav ul { position:absolute; width:15em; top:29px; left:-10000px; /*border:1px solid #bbb;*/ /*border-bottom:2px solid #999;*/ padding:3px 3px; background:#ECECEC; font-size:11px; border:1px solid #868B8E;border-top:none;}
+
+/* Show menu */
+#nav li.over > ul { left:-1px; }
+#nav li.over > ul li.over > ul { left:101px; }
+#nav li.over ul ul { left:-10000px; }
+
+#nav ul li a { padding:5px; color:#444 !important; }
+#nav ul li a:hover { padding:5px; color:#fff !important; background-color:#868B8E; }
+
+/************ 3RD+ LEVEL ************/
+#nav ul ul { position:absolute; width:15em; top:5px; left:-10000px; /*border:1px solid #bbb;*/ /*border-bottom:2px solid #999;*/ padding:3px 3px; background:#ECECEC; font-size:11px; border:1px solid #868B8E;}
