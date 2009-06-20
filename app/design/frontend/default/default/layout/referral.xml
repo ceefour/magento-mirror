@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <referral_index_index>
+        <reference name="content">
+            <block type="referral/referral" name="referral" template="referral/index.phtml" />
+        </reference>
+    </referral_index_index>
+</layout>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Alcyonis_Referral>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Alcyonis_Referral>
+    </modules>
+</config>
