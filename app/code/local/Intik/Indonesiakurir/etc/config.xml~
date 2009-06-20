@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Int2K Indonesiakurir Shipping Mdoule
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   Intik
+ * @package    Intik_Indonesiakurir
+ * @copyright  Copyright (c) 2008 Int2K (http://www.int2k.web.id)
+ * @author     Heri Priyatno
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+	<modules>
+		<Intik_Indonesiakurir>
+			<version>0.1.1</version>
+			<depends>
+				<Mage_Shipping />
+			</depends>
+		</Intik_Indonesiakurir>
+	</modules>		
+	<frontend>
+		<routers>
+            <indonesiakurir>
+                <use>standard</use>
+                <args>
+                    <module>Intik_Indonesiakurir</module>
+                    <frontName>indonesiakurir</frontName>
+                </args>
+            </indonesiakurir>
+        </routers>
+        <layout>
+            <updates>
+                <indonesiakurir>
+                    <file>indonesiakurir.xml</file>
+                </indonesiakurir>
+            </updates>
+        </layout>	
+		<translate>
+			<modules>
+				<Mage_Shipping>
+					<files>
+						<indonesiakurir>Indonesiakurir.csv</indonesiakurir>
+					</files>
+				</Mage_Shipping>
+			</modules>
+		</translate>
+	</frontend>		
+	<admin>
+        <routers>
+			<indonesiakurir>
+				<use>admin</use>
+				<args>
+					<module>Intik_Indonesiakurir</module>
+					<frontName>indonesiakurir</frontName>
+				</args>
+			</indonesiakurir>
+        </routers>	
+    </admin>	
+	<adminhtml>
+		<menu>
+			<system>
+				<children>
+					<indonesiakurir>
+						<title>Indonesia Kurir</title>
+						<sort_order>500</sort_order>
+						<children>
+							<items module="indonesiakurir">
+								<title>Manage Rates</title>
+								<sort_order>0</sort_order>
+								<action>indonesiakurir/adminhtml_indonesiakurir</action>
+							</items>
+							<servicename module="indonesiakurir">
+								<title>Manage Services</title>
+								<sort_order>1</sort_order>
+								<action>indonesiakurir/adminhtml_servicename</action>
+							</servicename>
+						</children>
+					</indonesiakurir>
+				</children>
+			</system>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<intik>
+							<title>Indonesiakurir Module</title>
+							<sort_order>10</sort_order>
+						</intik>
+						<system>
+							<children>
+								<config>
+									<children>
+										<indonesiakurir>
+											<title>Indonesia xxKurir</title>
+											<sort_order>100</sort_order>
+											
+										</indonesiakurir>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<indonesiakurir>
+					<file>indonesiakurir.xml</file>
+				</indonesiakurir>
+			</updates>
+		</layout>
+		<translate>
+			<modules>
+				<Mage_Shipping>
+					<files>
+						<indonesiakurir>Indonesiakurir.csv</indonesiakurir>
+					</files>
+				</Mage_Shipping>
+			</modules>
+		</translate>
+	</adminhtml>	
+	<global>
+    	<models>
+    		<indonesiakurir>
+	    		<class>Intik_Indonesiakurir_Model</class>
+				<resourceModel>indonesiakurir_mysql4</resourceModel>
+	    	</indonesiakurir>
+			<indonesiakurir_mysql4>
+				<class>Intik_Indonesiakurir_Model_Mysql4</class>
+				<entities>
+                    <indonesiakurir>
+                        <table>indonesiakurir</table>
+                    </indonesiakurir>
+                </entities>
+			</indonesiakurir_mysql4>
+    	</models>
+        <resources>
+            <indonesiakurir_setup>
+                <setup>
+                    <module>Intik_Indonesiakurir</module>
+                </setup>
+                <connection>
+                    <use>directory_setup</use>
+                </connection>
+            </indonesiakurir_setup>
+            <indonesiakurir_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </indonesiakurir_read>
+			<indonesiakurir_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </indonesiakurir_write>
+        </resources>
+		<blocks>
+            <indonesiakurir>
+                <class>Intik_Indonesiakurir_Block</class>
+            </indonesiakurir>
+        </blocks>
+        <helpers>
+            <indonesiakurir>
+                <class>Intik_Indonesiakurir_Helper</class>
+            </indonesiakurir>
+        </helpers>
+    </global>	
+	<default>
+		<intik>
+			<indonesiakurir>
+				<display_when_unavailable>0</display_when_unavailable>
+			</indonesiakurir>
+		</intik>	
+		<carriers>
+			<indonesiakurir>
+				<active>0</active>
+				<title>Indonesia Kurir</title>
+				<model>intik_indonesiakurir_model_carrier_indonesiakurir</model>				
+				<display_when_unavailable>0</display_when_unavailable>
+				<sort_order>1</sort_order>
+				<specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+				<handling_type>F</handling_type>
+			</indonesiakurir>
+		</carriers>
+	</default>
+
+</config>

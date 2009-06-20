@@ -1,0 +1,2 @@
+- remove section Indonesia xyKurir from configuration section
+- added handling fee calculation
